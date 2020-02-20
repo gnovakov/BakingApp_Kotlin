@@ -1,4 +1,4 @@
-package com.smartherd.bakingapp_kotlin
+package com.gnova.bakingapp_kotlin
 
 object Const {
 

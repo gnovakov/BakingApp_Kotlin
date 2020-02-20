@@ -1,6 +1,6 @@
-package com.smartherd.bakingapp_kotlin.api
+package com.gnova.bakingapp_kotlin.api
 
-import com.smartherd.bakingapp_kotlin.models.Recipe
+import com.gnova.bakingapp_kotlin.models.Recipe
 import retrofit2.Call
 import retrofit2.http.GET
 

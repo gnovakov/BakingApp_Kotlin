@@ -1,11 +1,11 @@
-package com.smartherd.bakingapp_kotlin
+package com.gnova.bakingapp_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.smartherd.bakingapp_kotlin.api.JsonRecipesApi
-import com.smartherd.bakingapp_kotlin.api.ServiceBuilder
-import com.smartherd.bakingapp_kotlin.models.Recipe
+import com.gnova.bakingapp_kotlin.api.JsonRecipesApi
+import com.gnova.bakingapp_kotlin.api.ServiceBuilder
+import com.gnova.bakingapp_kotlin.models.Recipe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

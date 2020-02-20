@@ -1,6 +1,6 @@
-package com.smartherd.bakingapp_kotlin.api
+package com.gnova.bakingapp_kotlin.api
 
-import com.smartherd.bakingapp_kotlin.Const.BASE_URL
+import com.gnova.bakingapp_kotlin.Const.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

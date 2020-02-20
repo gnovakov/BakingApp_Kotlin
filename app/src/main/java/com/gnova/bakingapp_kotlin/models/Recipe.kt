@@ -1,4 +1,4 @@
-package com.smartherd.bakingapp_kotlin.models
+package com.gnova.bakingapp_kotlin.models
 
 data class Recipe (
 

@@ -1,4 +1,4 @@
-package com.smartherd.bakingapp_kotlin
+package com.gnova.bakingapp_kotlin
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
