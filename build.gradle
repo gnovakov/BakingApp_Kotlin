@@ -16,6 +16,7 @@ buildscript {
         version_rxandroid = "2.1.1"
         version_rxkotlin = "2.2.0"
         version_recyclerview = "1.1.0"
+        version_cardview = "1.0.0"
     }
 
     repositories {
