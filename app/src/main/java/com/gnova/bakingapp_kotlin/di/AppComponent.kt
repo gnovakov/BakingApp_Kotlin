@@ -4,6 +4,8 @@ import android.content.Context
 import com.gnova.bakingapp_kotlin.ui.home.HomeActivity
 import com.gnova.bakingapp_kotlin.di.modules.ApiModule
 import com.gnova.bakingapp_kotlin.di.modules.AppModule
+import com.gnova.bakingapp_kotlin.ui.detail.DetailActivity
+import com.gnova.bakingapp_kotlin.ui.detail.DetailFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -20,5 +22,7 @@ interface AppComponent {
     }
 
     fun inject(activity: HomeActivity)
+    fun inject(activity: DetailActivity)
+    fun inject(fragment: DetailFragment)
 
 }

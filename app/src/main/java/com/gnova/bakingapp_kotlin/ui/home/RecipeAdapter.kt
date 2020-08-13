@@ -10,7 +10,7 @@ import com.gnova.bakingapp_kotlin.R
 import com.gnova.bakingapp_kotlin.api.models.Recipe
 import kotlinx.android.synthetic.main.recipe_list_item.view.*
 
-class RecipeAdapter() : ListAdapter<Recipe, RecipeAdapter.RecipeHolder>(DiffCallback) {
+class RecipeAdapter(private val onClickListener: OnClickListener) : ListAdapter<Recipe, RecipeAdapter.RecipeHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeHolder {
@@ -21,6 +21,9 @@ class RecipeAdapter() : ListAdapter<Recipe, RecipeAdapter.RecipeHolder>(DiffCall
 
     override fun onBindViewHolder(holder: RecipeHolder, position: Int) {
         val recipes = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(recipes)
+        }
         holder.bind(recipes)
     }
 
@@ -28,7 +31,7 @@ class RecipeAdapter() : ListAdapter<Recipe, RecipeAdapter.RecipeHolder>(DiffCall
 
         fun bind(recipe: Recipe) {
 
-            itemView.recipe_name_textView.text = recipe.name
+            itemView.recipe_name.text = recipe.name
 
         }
 
@@ -43,6 +46,10 @@ class RecipeAdapter() : ListAdapter<Recipe, RecipeAdapter.RecipeHolder>(DiffCall
         override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
             return oldItem == newItem
         }
+    }
+
+    class OnClickListener(val clickListener: (recipe: Recipe) -> Unit) {
+        fun onClick(recipe: Recipe) = clickListener(recipe)
     }
 
 }

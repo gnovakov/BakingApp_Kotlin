@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BakingApp_Kotlin</string>
+    <string name="recipe_card_title">Recipe</string>
+    <string name="steps_card_title">Step 1</string>
+    <string name="ingredients_name">Ingredient 1</string>
+    <string name="ingredients_quantity">500 G</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="step_short_description">Step Title</string>
+    <string name="step_description">Step Description</string>
+    <string name="ingredients">Ingredients :</string>
+    <string name="steps">Steps :</string>
 </resources>

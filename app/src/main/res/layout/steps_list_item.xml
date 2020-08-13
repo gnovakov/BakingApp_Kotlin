@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/recipe_card_view"
+        android:id="@+id/step_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -15,11 +15,11 @@
         app:cardCornerRadius="0dp">
 
         <TextView
-            android:id="@+id/recipe_name"
+            android:id="@+id/steps_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Recipe"
+            android:text="@string/steps_card_title"
             android:textColor="#000"
             android:textSize="18sp"/>
 
