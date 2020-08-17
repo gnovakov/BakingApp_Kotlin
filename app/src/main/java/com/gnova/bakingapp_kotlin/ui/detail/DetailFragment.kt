@@ -3,6 +3,7 @@ package com.gnova.bakingapp_kotlin.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,7 +93,7 @@ class DetailFragment : Fragment() {
     private fun launchSteplActivity(selectedStep: Steps) {
 
         if(dualPane) {
-
+            Log.d("TAG", "dualPane")
             // Create a bundle to pass the data
             val step = Bundle() // Use bundle to pass data
 
@@ -110,7 +111,7 @@ class DetailFragment : Fragment() {
 
 
         } else {
-
+            Log.d("TAG", "non dualPane")
             val intent = Intent(this.context, StepActivity::class.java)
             intent.putExtra(Const.STEP, selectedStep)
             startActivity(intent)

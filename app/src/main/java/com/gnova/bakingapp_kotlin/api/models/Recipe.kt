@@ -25,6 +25,6 @@ data class Steps (
     val id : Int?,
     val shortDescription : String?,
     val description : String?,
-    val videoURL : String?,
-    val thumbnailURL : String?
+    val videoURL : String,
+    val thumbnailURL : String
 ) : Parcelable
