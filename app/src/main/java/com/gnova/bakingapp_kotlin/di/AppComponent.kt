@@ -6,6 +6,8 @@ import com.gnova.bakingapp_kotlin.di.modules.ApiModule
 import com.gnova.bakingapp_kotlin.di.modules.AppModule
 import com.gnova.bakingapp_kotlin.ui.detail.DetailActivity
 import com.gnova.bakingapp_kotlin.ui.detail.DetailFragment
+import com.gnova.bakingapp_kotlin.ui.step.StepActivity
+import com.gnova.bakingapp_kotlin.ui.step.StepFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -24,5 +26,7 @@ interface AppComponent {
     fun inject(activity: HomeActivity)
     fun inject(activity: DetailActivity)
     fun inject(fragment: DetailFragment)
+    fun inject(activity: StepActivity)
+    fun inject(fragment: StepFragment)
 
 }

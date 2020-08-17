@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gnova.bakingapp_kotlin.R
 import com.gnova.bakingapp_kotlin.api.models.Ingredients
+import com.gnova.bakingapp_kotlin.api.models.Recipe
 import com.gnova.bakingapp_kotlin.api.models.Steps
+import com.gnova.bakingapp_kotlin.ui.home.RecipeAdapter
 import kotlinx.android.synthetic.main.ingredients_list_item.view.*
 import kotlinx.android.synthetic.main.steps_list_item.view.*
 
-class StepsAdapter() : ListAdapter<Steps, StepsAdapter.StepsHolder>(DiffCallback) {
+class StepsAdapter(private val onClickListener: StepsAdapter.OnClickListener) : ListAdapter<Steps, StepsAdapter.StepsHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepsHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.steps_list_item, parent, false)
@@ -23,6 +25,9 @@ class StepsAdapter() : ListAdapter<Steps, StepsAdapter.StepsHolder>(DiffCallback
 
     override fun onBindViewHolder(holder: StepsHolder, position: Int) {
         val steps = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(steps)
+        }
         holder.bind(steps)
     }
 
@@ -46,6 +51,10 @@ class StepsAdapter() : ListAdapter<Steps, StepsAdapter.StepsHolder>(DiffCallback
         override fun areContentsTheSame(oldItem: Steps, newItem: Steps): Boolean {
             return oldItem == newItem
         }
+    }
+
+    class OnClickListener(val clickListener: (steps: Steps) -> Unit) {
+        fun onClick(steps: Steps) = clickListener(steps)
     }
 
 }
