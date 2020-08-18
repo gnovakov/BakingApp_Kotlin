@@ -15,13 +15,12 @@ class DetailViewModel @Inject constructor() : ViewModel() {
     val selectedRecipe: LiveData<DetailModel>
         get() = _selectedRecipe
 
-    fun onViewInit(recipe: Recipe) {
-        editData(recipe)
+    fun onViewInit(recipe: Recipe, dualPane: Boolean) {
+        editData(recipe, dualPane)
     }
 
-    private fun editData(recipe: Recipe) {
+    private fun editData(recipe: Recipe, dualPane: Boolean) {
 
-        val dualPane = step_fragment != null
         val detailModel =
             DetailModel(recipe, dualPane)
 

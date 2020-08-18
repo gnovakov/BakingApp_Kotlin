@@ -53,7 +53,7 @@ class StepActivity : AppCompatActivity() {
 
                     // Begin the transaction
                     supportFragmentManager.beginTransaction() // Replace the contents of the container with the new fragment
-                        .add(R.id.step_fragment, stepFragment) // Complete the changes added above
+                        .add(R.id.step_fragment2, stepFragment) // Complete the changes added above
                         .commit()
             }
         })

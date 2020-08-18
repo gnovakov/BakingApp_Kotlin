@@ -1,6 +1,7 @@
 package com.gnova.bakingapp_kotlin.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -34,7 +35,9 @@ class DetailActivity : AppCompatActivity() {
 
         intent.extras?.let {
             val recipe = it.get(RECIPE) as Recipe
-            viewModel.onViewInit(recipe)
+            val dualPane = findViewById<View?>(R.id.step_fragment) != null
+            //val dualPane = step_fragment?.visibility == View.VISIBLE
+            viewModel.onViewInit(recipe, dualPane)
         }
 
         //Inflate DetailFragment whilst passing data

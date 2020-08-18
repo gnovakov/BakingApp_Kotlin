@@ -65,10 +65,10 @@ class StepFragment : Fragment() {
         val step = arguments!!.getParcelable<Steps>("step")
         viewModel.onViewInit(step)
 
-        observeStep()
+        observeSelectedStep()
     }
 
-    private fun observeStep() {
+    private fun observeSelectedStep() {
         viewModel.selectedStep.observe(viewLifecycleOwner, Observer {
             it?.let {
                 initialiseData(it)
@@ -83,7 +83,6 @@ class StepFragment : Fragment() {
             stepTitle.text = step.shortDescription
         } else {
             stepTitle.text = "Step ${step.id}: ${step.shortDescription}"
-
         }
 
         stepDescription.text = step.description
@@ -94,9 +93,6 @@ class StepFragment : Fragment() {
         } else {
             step.videoURL
         }
-
-        //Initialise Video Player if there is a video URL available, otherwise remove the PlayerView Element
-
 
         //Initialise Video Player if there is a video URL available, otherwise remove the PlayerView Element
         if (CONTENT_URL.length == 0) {
