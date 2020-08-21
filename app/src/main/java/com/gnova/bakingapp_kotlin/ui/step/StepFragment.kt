@@ -15,6 +15,7 @@ import com.gnova.bakingapp_kotlin.R
 import com.gnova.bakingapp_kotlin.ViewModelFactory
 import com.gnova.bakingapp_kotlin.api.models.Steps
 import com.google.android.exoplayer2.ExoPlayerFactory
+import com.google.android.exoplayer2.ExoPlayerFactory.newSimpleInstance
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
@@ -32,7 +33,7 @@ class StepFragment : Fragment() {
     internal lateinit var viewModelFactory: ViewModelFactory<StepFragmentViewModel>
     private lateinit var viewModel: StepFragmentViewModel
 
-    private lateinit var absPlayerInternal: SimpleExoPlayer
+    private lateinit var exoPlayer: SimpleExoPlayer
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,9 +50,10 @@ class StepFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.d("TAG", "Step Fragment")
+
         viewModel = ViewModelProvider(this, viewModelFactory).get(StepFragmentViewModel::class.java)
 
-
+        exoPlayer = newSimpleInstance(this.context, DefaultTrackSelector())
 
         // Get Argument that was passed from activity
         val step = arguments!!.getParcelable<Steps>("step")
@@ -89,33 +91,18 @@ class StepFragment : Fragment() {
         //Initialise Video Player if there is a video URL available, otherwise remove the PlayerView Element
         if (CONTENT_URL.length == 0) {
             videoContainer.visibility = PlayerView.GONE
+            exoPlayer.release()
+            Log.d("TAG", "No Video Player")
         } else {
             initialisePlayer(CONTENT_URL)
+            Log.d("TAG", "Yes Video Player")
         }
 
-    }
-
-    override fun onStop() {
-        super.onStop()
-        //stopPlayer();
-        pausePlayer(absPlayerInternal)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        stopPlayer()
     }
 
     private fun initialisePlayer(contentUrl: String) {
 
         val appNameStringRes = R.string.app_name
-
-        val trackSelectorDef: TrackSelector = DefaultTrackSelector()
-        absPlayerInternal = ExoPlayerFactory.newSimpleInstance(
-            context,
-            trackSelectorDef
-        ) //creating a player instance
-
 
         val userAgent = Util.getUserAgent( context, context!!.getString(appNameStringRes)
         )
@@ -125,33 +112,33 @@ class StepFragment : Fragment() {
             .createMediaSource(uriOfContentUrl) // creating a media source
 
 
-        absPlayerInternal.prepare(mediaSource)
-        absPlayerInternal.setPlayWhenReady(true) // start loading video and play it at the moment a chunk of it is available offline
+        exoPlayer.prepare(mediaSource)
+        exoPlayer.setPlayWhenReady(true) // start loading video and play it at the moment a chunk of it is available offline
 
 
-        pv_main.player = absPlayerInternal // attach surface to the view
+        pv_main.player = exoPlayer // attach surface to the view
 
     }
 
     // Stop & Release Player when we leave the page
     private fun stopPlayer() {
-        if (absPlayerInternal != null) {
-            absPlayerInternal.release()
-        }
+        exoPlayer.release()
     }
 
-    private fun playPlayer(player: SimpleExoPlayer?) {
-        if (player != null) {
-            player.playWhenReady = true
-        }
+    private fun pausePlayer() {
+        exoPlayer.playWhenReady = false
     }
 
-    private fun pausePlayer(player: SimpleExoPlayer?) {
-        if (player != null) {
-            player.playWhenReady = false
-        }
+    override fun onStop() {
+        super.onStop()
+        //stopPlayer();
+        pausePlayer()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        stopPlayer()
+    }
 
 
 

@@ -12,7 +12,7 @@ buildscript {
         version_picasso = "2.71828"
         version_dagger = "2.27"
         version_okhttp = "4.4.0"
-        version_appcompat = "1.1.0"
+        version_appcompat = "1.2.0"
         version_rxandroid = "2.1.1"
         version_rxkotlin = "2.2.0"
         version_recyclerview = "1.1.0"
