@@ -90,7 +90,7 @@ class StepFragment : Fragment() {
 
         //Initialise Video Player if there is a video URL available, otherwise remove the PlayerView Element
         if (CONTENT_URL.length == 0) {
-            videoContainer.visibility = PlayerView.GONE
+            videoContainer.visibility = View.GONE
             exoPlayer.release()
             Log.d("TAG", "No Video Player")
         } else {

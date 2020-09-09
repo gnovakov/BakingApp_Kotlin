@@ -21,8 +21,7 @@ class DetailViewModel @Inject constructor() : ViewModel() {
 
     private fun editData(recipe: Recipe, dualPane: Boolean) {
 
-        val detailModel =
-            DetailModel(recipe, dualPane)
+        val detailModel = DetailModel(recipe, dualPane)
 
         _selectedRecipe.value = detailModel
 

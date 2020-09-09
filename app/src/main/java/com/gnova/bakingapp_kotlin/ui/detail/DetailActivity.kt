@@ -15,8 +15,8 @@ import com.gnova.bakingapp_kotlin.api.models.Recipe
 import javax.inject.Inject
 
 // Detail Activity - Main Screen with list of Ingredients and Steps for a chosen recipe
-    // - DetailActivity - is a holder that holds the Steps Fragment(which contains the ist of Ingredients and Steps for a chosen recipe)
-        // When a step is clicked the Step Detail Activity is loaded which holds the step detail Fragment which contains Details for an individual step (video, description etc...)
+// - DetailActivity - is a holder that holds the Steps Fragment(which contains the ist of Ingredients and Steps for a chosen recipe)
+// When a step is clicked the Step Detail Activity is loaded which holds the step detail Fragment which contains Details for an individual step (video, description etc...)
 
 // Step Detail Activity - Details for an individual step (video, description etc...)
 
@@ -53,26 +53,20 @@ class DetailActivity : AppCompatActivity() {
         viewModel.selectedRecipe.observe(this, Observer {
             it?.let {
 
-        // Create a bundle to pass the data
-        val data = Bundle() // Use bundle to pass data
+                // Create a bundle to pass the data
+                val data = Bundle() // Use bundle to pass data
 
-        // Put data into bundle
-        data.putParcelable("recipe", it)
+                // Put data into bundle
+                data.putParcelable("recipe", it)
 
-        if(it.recipe.name != null) {
-            val detailFragment: Fragment = DetailFragment() // Get Fragment Instance
+                val detailFragment: Fragment = DetailFragment() // Get Fragment Instance
 
-            detailFragment.arguments = data // Set argument bundle to our fragment
+                detailFragment.arguments = data // Set argument bundle to our fragment
 
-            // Begin the transaction
-            supportFragmentManager.beginTransaction() // Replace the contents of the container with the new fragment
-                .add(R.id.detail_fragment, detailFragment) // Complete the changes added above
-                .commit()
-        } else {
-            Toast.makeText(this, "Unable To Launch Fragment Transaction", Toast.LENGTH_SHORT).show()
-            finish()
-        }
-
+                // Begin the transaction
+                supportFragmentManager.beginTransaction() // Replace the contents of the container with the new fragment
+                    .add(R.id.detail_fragment, detailFragment) // Complete the changes added above
+                    .commit()
             }
         })
     }
