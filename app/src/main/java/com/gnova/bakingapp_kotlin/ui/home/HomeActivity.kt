@@ -43,29 +43,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observeApiStatus() {
-        viewModel.apiStatus.observe(this, Observer {
-            it?.let {
-                when (it) {
-                    BakingApiStatus.LOADING -> {
-                        Log.d("TAG", "LOADING")
-                    }
-                    BakingApiStatus.ERROR -> {
-                        Log.d("TAG", "ERROR")
-                    }
-                    BakingApiStatus.DONE -> {
-                        Log.d("TAG", "DONE")
-                        observeRecipes()
-                    }
-
-                }
-            }
-        })
-    }
-
-    private fun observeRecipes() {
-        viewModel.recipes.observe(this, Observer {
-            it?.let {
-                showRecipe(it)
+        viewModel.viewState.observe(this, Observer {
+            when (it) {
+                is HomeViewState.Presenting -> showRecipe(it.recipe)
+                is Error -> Log.d("TAG", "ERROR")
             }
         })
     }
@@ -82,9 +63,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        recipe_recycler_view.setHasFixedSize(true)
-        recipe_recycler_view.layoutManager = GridLayoutManager(this, 1)
-        recipe_recycler_view.adapter = adapter
+        recipe_recycler_view.let {
+            it.setHasFixedSize(true)
+            it.layoutManager = GridLayoutManager(this, 1)
+            it.adapter = adapter
+        }
     }
 
 
